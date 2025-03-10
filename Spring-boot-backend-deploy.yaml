@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-backend-deploy
+  labels:
+    name: spring-boot-backend-deploy
+    app: capitec-user-services
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      name: spring-boot-backend-app-pod
+      app: capitec-user-service
+  template:
+    metadata:
+      name: spring-boot-backend-app-pod
+      labels:
+        name: spring-boot-backend-app-pod
+        app: capitec-user-service
+    spec:
+      containers:
+        - name: spring-boot-backend-app-pod
+          image: thapeloseema/capitec-user-service:backend-windows-latest
+          ports:
+            - containerPort: 80
+    
